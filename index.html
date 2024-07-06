@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cat vs Dog Classifier</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            color: #333;
+            text-align: center;
+            padding: 20px;
+        }
+        h1 {
+            color: #2c3e50;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .upload-form {
+            margin-bottom: 30px;
+        }
+        .upload-form input[type="file"] {
+            border: 2px dashed #27ae60;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: #ecf0f1;
+        }
+        .upload-form button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            border: none;
+            background-color: #27ae60;
+            color: #fff;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .upload-form button:hover {
+            background-color: #2ecc71;
+        }
+        .images {
+            margin: 20px 0;
+        }
+        .images img {
+            max-width: 100px;
+            height: auto;
+            margin: 0 10px;
+        }
+        .message {
+            color: #e74c3c;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Cat vs Dog Image Classifier</h1>
+        <p>Upload a picture of a cat or a dog to find out which one it is!</p>
+        <div class="upload-form">
+            <form action="{{ url_for('upload') }}" method="post" enctype="multipart/form-data">
+                <input type="file" name="file" accept=".jpg,.jpeg,.png">
+                <br>
+                <button type="submit">Classify Image</button>
+            </form>
+        </div>
+        {% if message %}
+            <p class="message">{{ message }}</p>
+        {% endif %}
+        <div class="images">
+            <img src="{{ url_for('static', filename='cat.jpg') }}" alt="Cat">
+            <img src="{{ url_for('static', filename='dog.jpg') }}" alt="Dog">
+        </div>
+    </div>
+</body>
+</html>
